@@ -1,12 +1,37 @@
-<% content_for :title, "Showing note" %>
+<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10">
 
-<div class="md:w-2/3 w-full">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="font-bold text-3xl text-gray-900">Note</h1>
+    <%= link_to "Back to notes", root_path,
+        class: "text-sm text-gray-600 hover:text-gray-900 font-medium" %>
+  </div>
 
-  <h1 class="font-bold text-4xl">Showing note</h1>
+  <!-- Note card -->
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 sm:p-8">
 
-  <%= render @note %>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-2">
+      <%= @note.title %>
+    </h2>
 
-  <%= link_to "Edit this note", edit_note_path(@note), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to notes", notes_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= button_to "Destroy this note", @note, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+    <p class="text-sm text-gray-500 mb-6">
+      <%= @note.created_at.strftime("%B %d, %Y") %>
+    </p>
+
+    <div class="prose prose-sm max-w-none text-gray-800 whitespace-pre-line leading-relaxed">
+      <%= @note.description %>
+    </div>
+
+  </div>
+
+  <!-- Actions -->
+  <div class="flex flex-wrap gap-3 mt-6">
+    <%= link_to "Edit", edit_note_path(@note),
+        class: "rounded-lg px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors" %>
+
+    <%= button_to "Delete", @note, method: :delete,
+        class: "rounded-lg px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 font-medium cursor-pointer transition-colors",
+        data: { turbo_confirm: "Are you sure?" } %>
+  </div>
+
 </div>

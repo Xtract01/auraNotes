@@ -1,9 +1,15 @@
 <% content_for :title, "New note" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New note</h1>
+<div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-10">
 
-  <%= render "form", note: @note %>
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="font-bold text-3xl text-gray-900">New note</h1>
+    <%= link_to "Back to notes", root_path,
+        class: "text-sm text-gray-600 hover:text-gray-900 font-medium" %>
+  </div>
 
-  <%= link_to "Back to notes", notes_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+    <%= render "form", note: @note %>
+  </div>
+
 </div>
